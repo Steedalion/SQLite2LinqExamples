@@ -62,7 +62,7 @@ namespace mysqliteTest
         {
             AddNewCustomer();
             string stm = "SELECT SQLITE_VERSION()";
-            connection.Open();
+            connection.Open(); // notice I have to re-open database after previous sql-Query
             using var cmd = new SQLiteCommand(stm, connection);
             cmd.CommandText = "SELECT * FROM Customers GO";
             string Customers = cmd.ExecuteScalar().ToString();

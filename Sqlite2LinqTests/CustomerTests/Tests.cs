@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Data;
 using System.Data.SQLite;
 using System.Data.Linq;
-using System.Data.Linq.Mapping;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 
 namespace mysqliteTest
@@ -27,6 +26,7 @@ namespace mysqliteTest
         public void StartConnections()
         {
             OpenConnenction();
+            RemoveAllCustomers();
         }
 
         [TearDown]
@@ -58,15 +58,16 @@ namespace mysqliteTest
         }
 
         [Test]
-        public void SubmitAquery()
+        public void SubmitNormalQuery()
         {
+            AddNewCustomer();
             string stm = "SELECT SQLITE_VERSION()";
             connection.Open();
             using var cmd = new SQLiteCommand(stm, connection);
             cmd.CommandText = "SELECT * FROM Customers GO";
             string Customers = cmd.ExecuteScalar().ToString();
-            Console.WriteLine(Customers);
             connection.Close();
+            Assert.IsNotEmpty(Customers);
         }
 
         [Test]
@@ -99,6 +100,19 @@ namespace mysqliteTest
             dbconnection.SubmitChanges();
         }
 
+        public void RemoveAllCustomers()
+        {
+            CustomerContext dbc = new CustomerContext(connection);
+            var deleteCustomers =
+                from cust in dbc.Customers
+                select cust;
+            if (deleteCustomers.Count() > 0)
+            {
+             dbc.Customers.DeleteAllOnSubmit(deleteCustomers);
+             dbc.SubmitChanges();
+            }
+        }
+
         [Test]
         public void PrintSomeInfo()
         {
@@ -118,37 +132,6 @@ namespace mysqliteTest
             {
                 Console.WriteLine(cus.CustomerID + ":" + cus.City);
             }
-        }
-    }
-
-    public class CustomerContext : DataContext
-    {
-        public CustomerContext(IDbConnection connection) : base(connection)
-        {
-        }
-
-        public Table<Customer> Customers;
-    }
-
-    [Table(Name = "Customers")]
-    public class Customer
-    {
-        private string _CustomerID;
-
-        [Column(IsPrimaryKey = true, Storage = "_CustomerID")]
-        public string CustomerID
-        {
-            get { return this._CustomerID; }
-            set { this._CustomerID = value; }
-        }
-
-        private string _City;
-
-        [Column(Storage = "_City")]
-        public string City
-        {
-            get { return this._City; }
-            set { this._City = value; }
         }
     }
 }

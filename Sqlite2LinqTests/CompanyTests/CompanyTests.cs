@@ -2,7 +2,6 @@
 using System.Data.Linq;
 using System.Data.SQLite;
 using NUnit.Framework;
-using System.Data.Linq.Mapping;
 using System.IO;
 
 namespace mysqliteTest.Properties
@@ -11,6 +10,9 @@ namespace mysqliteTest.Properties
     /// See https://vijayt.com/post/using-sqlite-database-in-net-with-linq-to-sql-and-entity-framework-6/
     /// for details of this test.
     /// </summary>
+    ///
+
+    
     [TestFixture]
     public class CompanyTests
     {
@@ -31,13 +33,5 @@ namespace mysqliteTest.Properties
             }
             connection.Close();
         }
-    }
-
-    [Table(Name = "company")]
-    class Company
-    {
-        [Column(Name = "id")] public int Id { get; set; }
-
-        [Column(Name = "seats")] public int Seats { get; set; }
     }
 }

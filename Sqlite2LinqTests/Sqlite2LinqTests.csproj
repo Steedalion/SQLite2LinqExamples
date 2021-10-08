@@ -66,8 +66,8 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Properties\CompanyTests.cs" />
-        <Compile Include="Tests.cs" />
+        <Compile Include="CompanyTests\CompanyTests.cs" />
+        <Compile Include="CustomerTests\Tests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>

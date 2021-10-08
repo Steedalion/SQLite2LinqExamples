@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqlite2LinqTests", "Sqlite2LinqTests\Sqlite2LinqTests.csproj", "{E4861255-77FD-428D-B81D-2BE67DC05F04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4861255-77FD-428D-B81D-2BE67DC05F04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4861255-77FD-428D-B81D-2BE67DC05F04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4861255-77FD-428D-B81D-2BE67DC05F04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4861255-77FD-428D-B81D-2BE67DC05F04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
